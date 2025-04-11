@@ -31,6 +31,10 @@ app.get('/api/:date?', (req, res) => {
         data = new Date(input);
     }
 
+    if (isNaN(date1.getTime()) || isNaN(date2.getTime())) {
+        return res.json({ error: "Invalid Date" });
+    }
+
     let timezone = parseFloat(req.query.timezone);
 
     if (timezone > 12) {
@@ -58,6 +62,11 @@ app.get('/api/diff/:date1/:date2', (req, res) => {
     let date1 = new Date(parseInt(req.params.date1));
     let date2 = new Date(parseInt(req.params.date2));
     let difference;
+
+    if (isNaN(date1.getTime()) || isNaN(date2.getTime())) {
+        return res.json({ error: "Invalid Date" });
+    }
+
     if(date1>date2){
         difference = date1-date2;
     } else {
@@ -74,15 +83,11 @@ app.get('/api/diff/:date1/:date2', (req, res) => {
     const remainingMsOfMinutes = remainingMsOfHours % (1000 * 60);
 
     const seconds = Math.floor(remainingMsOfMinutes / 1000);
-    const remainingMsOfSeconds = remainingMsOfMinutes % 1000;
-    
-    const milliseconds = remainingMsOfSeconds;
 
     res.json({
-        milisegundos: milliseconds,
-        segundos: seconds,
-        minutos: minutes,
-        horas: hours,
-        dias: days
-    })
+        seconds: seconds,
+        minutes: minutes,
+        hours: hours,
+        days: days
+    });
 });
