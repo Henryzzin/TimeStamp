@@ -1,6 +1,6 @@
 const inputDate = document.getElementById("inputDate");
 const buttonDate = document.getElementById("buttonDate");  
-const resultDate = document.getElementById("result");
+const resultDate = document.getElementById("resultDate");
 
 const firstDate = document.getElementById("firstDate");
 const secondDate = document.getElementById("secondDate");

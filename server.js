@@ -31,10 +31,6 @@ app.get('/api/:date?', (req, res) => {
         data = new Date(input);
     }
 
-    if (isNaN(date1.getTime()) || isNaN(date2.getTime())) {
-        return res.json({ error: "Invalid Date" });
-    }
-
     let timezone = parseFloat(req.query.timezone);
 
     if (timezone > 12) {
