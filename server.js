@@ -18,32 +18,40 @@ app.listen(PORT, () => {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 app.get('/api/:date?', (req, res) => {
+    let input = req.params.date;
+    let data;
 
-    let data = new Date(req.params.date);
+    if (!input) {
+        data = new Date();
+    } else if (!isNaN(input)) {
+        // Se for um número, transforma em Number para evitar erro
+        data = new Date(Number(input));
+    } else {
+        // Caso contrário, tenta criar uma data normal
+        data = new Date(input);
+    }
+
     let timezone = parseFloat(req.query.timezone);
 
-    if(timezone>12){
-        timezone=12
-    } else if(timezone<-12){
-        timezone=-12
-    } else if(isNaN(timezone)){
-        timezone=0;
+    if (timezone > 12) {
+        timezone = 12;
+    } else if (timezone < -12) {
+        timezone = -12;
+    } else if (isNaN(timezone)) {
+        timezone = 0;
     }
 
-    data.setHours(data.getHours()+timezone);
-    
-    if(!data){
-        data = new Date();
-    } else {
-        utc = data.toUTCString();
-        unix = data.getTime();
+    if (isNaN(data.getTime())) {
+        return res.json({ error: "Invalid Date" });
     }
+
+    data.setHours(data.getHours() + timezone);
 
     res.json({
-        utc: utc,
-        unix: unix,
+        utc: data.toUTCString(),
+        unix: data.getTime(),
         timezone: timezone
-    })
+    });
 });
 
 app.get('/api/diff/:date1/:date2', (req, res) => {
@@ -56,11 +64,19 @@ app.get('/api/diff/:date1/:date2', (req, res) => {
         difference = date2-date1;
     }
 
-    let days = Math.floor(difference / (1000*60*60*24));
-    let hours = Math.floor(difference % (1000*60*60));
-    let minutes = Math.floor(difference % (1000*60));
-    let seconds = Math.floor(difference % (1000));
-    let milliseconds = difference;
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const remainingMsOfDays = difference % (1000 * 60 * 60 * 24);
+
+    const hours = Math.floor(remainingMsOfDays / (1000 * 60 * 60));
+    const remainingMsOfHours = remainingMsOfDays % (1000 * 60 * 60);
+
+    const minutes = Math.floor(remainingMsOfHours / (1000 * 60));
+    const remainingMsOfMinutes = remainingMsOfHours % (1000 * 60);
+
+    const seconds = Math.floor(remainingMsOfMinutes / 1000);
+    const remainingMsOfSeconds = remainingMsOfMinutes % 1000;
+    
+    const milliseconds = remainingMsOfSeconds;
 
     res.json({
         milisegundos: milliseconds,

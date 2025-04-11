@@ -8,19 +8,28 @@
    </head>
 
    <body>
-    <h1>Timestamp Microservice</h1>
-    <hr />
-    <div class="container">
-      <h2>Example Usage:</h2>
-      <ul>
-        <li><a href="api/2015-12-25">[project url]/api/2015-12-25</a></li>
-        <li><a href="api/1451001600000">[project url]/api/1451001600000</a></li>
-      </ul>
+    <div id="box">
+      <h1>Timestamp Microservice</h1>
+      <hr />
+      <h2>Converter Datas</h2>
+      <div id="data">
+        <input type="text" id="inputDate" placeholder="Ex: 2023-03-02...">
+        <button id="buttonDate">Converter</button>
+      </div>
+      
+      <div class="result" id="resultDate">
+        <div id="UTC"><span id="UTCText"></span></div>
+        <div id="Unix"><span id="UnixText"></span></div>
+      </div>
 
-      <h2>Example Output:</h2>
-      <p>
-        <code>{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code>
-      </p>
+      <div>
+        <input type="text" id="firstDate" placeholder="Fri, 11 Apr 2025 20:01:21 GMT">
+        <input type="text" id="secondDate" placeholder="Fri, 11 Apr 2025 20:01:21 GMT">
+        <button id="buttonDiff"">Diferença</button>
+      </div>
+      <div class="result" id="resultDiff"></div>
+
     </div>
   </body>
+  <script defer async src="index.js"></script>
 </html>
