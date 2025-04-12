@@ -1,45 +1,128 @@
+html {
+    background-image: url('./imgs/gremio.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+}
+
 body {
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	color: #222;
-	background-color: #FaFaFa;
-	text-align: center;
-	line-height: 1.4em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-	padding: 0;
-	margin-top: 40px;
+#box {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 3px solid #0054a6; /* Borda azul */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-h3 {
-  margin-top: 30px;
+#box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #0054a6; 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 3px solid #000000; /* Linha preta */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #000000; 
+    margin-bottom: 20px;
+    text-transform: capitalize;
 }
 
 hr {
-	margin: 25px;
+    border: 0;
+    height: 1px;
+    background: #0054a6; 
+    margin: 20px 0;
 }
 
-.footer {
-	margin-top: 40px;
+#data, #resultDiff {
+    margin-bottom: 20px;
 }
 
-code {
-  font-family: monospace;
-  padding: 2px;
-  color: black;
-  background-color: #fff;
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #0054a6; 
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-ul {
-	list-style-type: none;
-    padding-left: 0;
+input[type="text"]:focus {
+    border-color: #000000; 
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    outline: none;
 }
 
-li {
-  margin-bottom: 0.5em;
+button {
+    padding: 12px 25px;
+    font-size: 1em;
+    color: #ffffff; 
+    background-color: #0054a6; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-a {
-	color: #2574A9;
+button:hover {
+    background-color: #000000; 
+    transform: scale(1.05);
+}
+
+.result {
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #0054a6; 
+    border-radius: 6px;
+    font-size: 1em;
+    color: #333;
+    word-wrap: break-word;
+    margin-top: 10px;
+}
+
+.error {
+    color: #e74c3c; 
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #ffffff;
+}
+
+footer a {
+    color: #ffffff; 
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #0054a6; 
+    text-decoration: underline;
 }
